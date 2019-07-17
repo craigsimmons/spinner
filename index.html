@@ -6,6 +6,8 @@
     <body>
         <br>
         <button onClick="changeColors();">Change Colors</button>
+        <button onClick="addSegment();">Add Segment</button>
+        <button onClick="deleteSegment();">Delete Segment</button>
         <br><br>
         <canvas id='canvas' width='880' height='300'>
             Canvas not supported, use another browser.
@@ -24,18 +26,33 @@
             {'fillStyle' : '#e7706f', 'text' : 'Segment 4'}
         ]
     });
-    function changeColors()
-    {
-        // Change colours as desired by accessing the segment via the segments array
-        // of the wheel object (note first array position is 1 not 0).
+    function changeColors() {
+        // (note first array position is 1 not 0). Quirk of winwheel.js
         let temp = theWheel.segments[1].fillStyle;
         theWheel.segments[1].fillStyle = theWheel.segments[2].fillStyle;
         theWheel.segments[2].fillStyle = theWheel.segments[3].fillStyle;
         theWheel.segments[3].fillStyle = theWheel.segments[4].fillStyle;
         theWheel.segments[4].fillStyle = temp;
+        theWheel.draw();
+    }
+
+    function addSegment(){
+        // Use a date object to set the text of each added segment to the current minutes:seconds
+        // (just to give each new segment a different label).
+        let date = new Date();
+        // The Second parameter in the call to addSegment specifies the position,
+        // in this case 1 meaning the new segment goes at the start of the wheel.
+        theWheel.addSegment({
+            'text' : date.getMinutes() + ':' + date.getSeconds(),
+            'fillStyle' : 'red'
+        }, 1);
+        theWheel.draw();
+    }
  
-        // The draw method of the wheel object must be called
-        // in order for the changes to be rendered.
+    function deleteSegment() {
+        // Call function to remove a segment from the wheel, by default the last one will be
+        // removed; you can pass in the number of the segment to delete if desired.
+        theWheel.deleteSegment();
         theWheel.draw();
     }
 </script>
