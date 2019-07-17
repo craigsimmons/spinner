@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <title>My Winning Wheel</title>
+        <meta charset="UTF-8">
+       
+        <link href="style.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+        <script src="Winwheel.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <br>
+            <button onClick="theWheel.startAnimation();">Spin the Wheel</button>
+            <button onClick="resetWheel(); return false;">Reset Wheel</button>
+            <br><br>
+            <div id="canvasContainer container">
+                <canvas id='canvas' width='500' height='500'>
+                    Canvas not supported, use another browser.
+                </canvas>
+            </div>
+        </div>
+        
+        <script>
+                let theWheel = new Winwheel({
+                    'canvasId'    : 'canvas',
+                    'drawMode'    : 'code',
+                    'direction'    : 'clockwise',
+                    'repeat'       : 0,
+                    'numSegments' : 5,
+                    'lineWidth'   : 1,
+                    'outerRadius'  : 220, 
+                    'centerX'     : 250,    
+                    'centerY'     : 251,    
+                    'segments'    :
+                    [
+                        {'fillStyle' : '#337CA0', 'text' : 'Jesse'},
+                        {'fillStyle' : '#3EC300', 'text' : 'Wendy'},
+                        {'fillStyle' : '#FFFC31', 'text' : 'Brianda'},
+                        {'fillStyle' : '#FF1D15', 'text' : 'Katie'},
+                        {'fillStyle' : '#7A693A', 'text' : 'Craig'},
+                    ],
+                    'animation' :                 
+                    {
+                        'type'     : 'spinToStop',  
+                        'duration' : 5,            
+                        'spins'    : 8,     
+                        'callbackFinished' : 'winAnimation()',
+                        // 'callbackAfter' : 'alertPrize()',
+                    },
+                    'pointerGuide' :
+                    {
+                        'display'     : true,
+                        'strokeStyle' : 'red',
+                        'lineWidth'   : 3
+                    },
+                    'pins' :
+                    {
+                        'number'      : 18,
+                        'outerRadius' : 3,
+                        'margin'      : 5,
+                        'fillStyle'   : '#000000',
+                        'strokeStyle' : '#ffffff',
+                    }
+                });
+                function resetWheel() {
+                        theWheel.stopAnimation(false);  
+                        theWheel.rotationAngle = 0;     
+                        theWheel.draw();                
+                        wheelSpinning = false;
+                        clearTheCanvas = true;
+                }
+                function alertPrize() { 
+                    let winningSegment = theWheel.getIndicatedSegment();
+                    alert("The Wheel selected: " + winningSegment.text + "!");
+                }
+
+                function winAnimation() {
+                    let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
+                    for (let x = 1; x < theWheel.segments.length; x ++) {
+                        theWheel.segments[x].fillStyle = 'gray';
+                    }
+                    theWheel.segments[winningSegmentNumber].fillStyle = 'yellow';
+                    theWheel.draw();
+                }
+            </script>
+    </body>
+</html>
