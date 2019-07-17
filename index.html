@@ -6,14 +6,28 @@
         <link href="style.css" rel="stylesheet" />
     </head>
     <body>
-        <br>
-        <button onClick="changeColors();">Change Colors</button>
-        <button onClick="addSegment();">Add Segment</button>
-        <button onClick="deleteSegment();">Delete Segment</button>
-        <br><br>
-        <canvas id="canvas" width="500" height="500">
-            Canvas not supported, use another browser.
-        </canvas>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                        <button onClick="changeColors();">Change Colors</button>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-lg-12">
+                            <button onClick="addSegment();">Add Segment</button>
+                            <button onClick="deleteSegment();">Delete Segment</button>
+                    </div>
+            </div>
+            <div class="row">
+                    <div class="col-lg-12">
+                        <br><br>
+                        <canvas id="canvas" width="500" height="500">
+                                Canvas not supported, use another browser.
+                        </canvas>
+                    </div>
+            </div>
+        </div>
+        
 <script>
     let theWheel = new Winwheel({
         'canvasId'    : 'canvas',
@@ -23,7 +37,8 @@
         'repeat'       : 0,
         'outerRadius'  : 220, 
         'centerX'     : 250,    
-        'centerY'     : 255, 
+        'centerY'     : 255,
+        'rotationAngle'   : -36, 
         'segments'    :
         [
             {'fillStyle' : '#337CA0', 'text' : 'Jesse'},
