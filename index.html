@@ -11,7 +11,7 @@
         <button onClick="addSegment();">Add Segment</button>
         <button onClick="deleteSegment();">Delete Segment</button>
         <br><br>
-        <canvas id='canvas' width='880' height='300'>
+        <canvas id="canvas" width="500" height="500">
             Canvas not supported, use another browser.
         </canvas>
 <script>
@@ -19,6 +19,11 @@
         'canvasId'    : 'canvas',
         'lineWidth'   : 3,
         'numSegments' : 5,
+        'direction'    : 'clockwise',
+        'repeat'       : 0,
+        'outerRadius'  : 220, 
+        'centerX'     : 250,    
+        'centerY'     : 255, 
         'segments'    :
         [
             {'fillStyle' : '#337CA0', 'text' : 'Jesse'},
