@@ -2,6 +2,6 @@
     background-image: url(./images/wheelbg.png);
     background-repeat: no-repeat;   /* Ensure that background does not repeat */
     background-position: center;    /* Ensure image is centred */
-    width: 300px;                   /* Width and height should at least be the same as the canvas */
-    height: 880px;
+    width: 880px;                   /* Width and height should at least be the same as the canvas */
+    height: 300px;
 }
