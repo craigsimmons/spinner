@@ -8,7 +8,11 @@
             Canvas not supported, use another browser.
         </canvas>
         <script>
-            let theWheel = new Winwheel();
+            let theWheel = new Winwheel({
+        'canvasId'    : 'canvas',
+        'numSegments' : 12,
+        'fillStyle'   : '#e7706f',
+        'lineWidth'   : 3
+    });
         </script>
     </body>
-</html>
