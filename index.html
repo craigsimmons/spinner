@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>Spinning Wheel</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="Winwheel.js"></script>
         <link href="style.css" rel="stylesheet" />
         <style>
@@ -38,7 +40,7 @@
     let theWheel = new Winwheel({
         'canvasId'    : 'canvas',
         'lineWidth'   : 3,
-        'numSegments' : 5,
+        'numSegments' : 10,
         'direction'    : 'clockwise',
         'repeat'       : 0,
         'outerRadius'  : 220, 
@@ -51,7 +53,12 @@
             {'fillStyle' : '#3EC300', 'text' : 'Wendy'},
             {'fillStyle' : '#FFFC31', 'text' : 'Brianda'},
             {'fillStyle' : '#FF1D15', 'text' : 'Katie'},
-            {'fillStyle' : '#7A693A', 'text' : 'Craig'}
+            {'fillStyle' : '#7A693A', 'text' : 'Craig'},
+            {'fillStyle' : '#337CA0', 'text' : 'Boe'},
+            {'fillStyle' : '#3EC300', 'text' : 'Wigg'},
+            {'fillStyle' : '#FFFC31', 'text' : 'Barrios Lopez'},
+            {'fillStyle' : '#FF1D15', 'text' : 'Forbush'},
+            {'fillStyle' : '#7A693A', 'text' : 'Simmons'}
         ]
     });
 
@@ -62,7 +69,12 @@
         theWheel.segments[2].fillStyle = theWheel.segments[3].fillStyle;
         theWheel.segments[3].fillStyle = theWheel.segments[4].fillStyle;
         theWheel.segments[4].fillStyle = theWheel.segments[5].fillStyle;
-        theWheel.segments[5].fillStyle = temp;
+        theWheel.segments[5].fillStyle = theWheel.segments[6].fillStyle;
+        theWheel.segments[6].fillStyle = theWheel.segments[7].fillStyle;
+        theWheel.segments[7].fillStyle = theWheel.segments[8].fillStyle;
+        theWheel.segments[8].fillStyle = theWheel.segments[9].fillStyle;
+        theWheel.segments[9].fillStyle = theWheel.segments[10].fillStyle;
+        theWheel.segments[10].fillStyle = temp;
         theWheel.draw();
     };
 
