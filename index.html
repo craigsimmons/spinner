@@ -19,11 +19,12 @@
             <div class="row">
                 <div class="col-lg-12">
                         <button onClick="theWheel.startAnimation();">Spin the Wheel</button>
-                        <button onClick="changeColors();">Change Colors</button>
+                        <button onClick="theWheel.stopAnimation(); theWheel.rotationAngle=0; theWheel.draw();">Reset</button>
                 </div>
             </div>
             <div class="row">
                     <div class="col-lg-12">
+                            <button onClick="changeColors();">Change Colors</button>
                             <button onClick="addSegment();">Add Segment</button>
                             <button onClick="deleteSegment();">Delete Segment</button>
                     </div>
