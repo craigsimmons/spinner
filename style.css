@@ -1,25 +1,23 @@
-* {
+/* * {
     border: 1px red solid;
-}
+} */
 #canvasContainer {
     position: relative;
     width: 500px;
 }
  
-/* #canvas {
+#canvas {
     background-image: url(./images/wheelbg.png);
     background-repeat: no-repeat;   
     background-position: center;   
     width: 500px;                  
     height: 500px;
-} */
+    z-index: 1;
+}
  
 #prizePointer {
     position: absolute;
     left: 240px;
     top: 50px;
     z-index: 999;
-}
-#canvas{
-    z-index: 1; 
 }
