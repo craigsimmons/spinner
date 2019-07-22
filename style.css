@@ -1,3 +1,9 @@
+* {
+    border: 1px red solid;
+}
+
+
+
 #canvas{
     background-image: url(./images/wheelbg.png);
     background-repeat: no-repeat;   /* Ensure that background does not repeat */

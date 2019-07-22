@@ -11,24 +11,28 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                         <button onClick="theWheel.startAnimation();">Spin the Wheel</button>
                         <button onClick="theWheel.rotationAngle=0; theWheel.draw();">Reset</button>
                 </div>
-            </div>
-            <div class="row">
-                    <div class="col-lg-12">
+            <!-- </div>
+            <div class="row"> -->
+                    <div class="col-lg-6">
                             <button onClick="changeColors();">Change Colors</button>
                             <button onClick="addSegment();">Add Segment</button>
                             <button onClick="deleteSegment();">Delete Segment</button>
                     </div>
             </div>
             <div class="row">
-                    <div class="col-lg-12">
-                        <br><br>
-                        <canvas id="canvas" width="500" height="500">
-                                Canvas not supported, use another browser.
-                        </canvas>
+                    <div class="col-lg-6">
+                            <br><br>
+                            <canvas id="canvas" width="500" height="500">
+                                    Canvas not supported, use another browser.
+                            </canvas>
+                        </div>
+                    <div class="col-lg-6">
+    
+                        API s here
                     </div>
             </div>
         </div>
@@ -37,32 +41,45 @@
     let theWheel = new Winwheel({
         'canvasId'    : 'canvas',
         'lineWidth'   : 3,
-        'numSegments' : 10,
+        'numSegments' : 18,
         'direction'    : 'clockwise',
         'repeat'       : 0,
+        'textAlignment'  : 'center',
+        'textOrientation' : 'vertical',    // Set orientation. horizontal, vertical, curved.
+        'textFontFamily'  : 'verdana',     // Monospace font best for vertical and curved.
+        'textFontSize'    : 24,
         'outerRadius'  : 220, 
         'centerX'     : 250,    
         'centerY'     : 255,
-        'rotationAngle'   : 36, 
+        'rotationAngle'   : 0, 
+        'innerRadius'   : 75,  
         'animation' :
         {
             'type'     : 'spinToStop',
-            'duration' : 5,
-            'spins'    : 12,
+            'duration' : 3,
+            'spins'    : 9,
             'callbackFinished' : 'alertPrize()'
         },
         'segments'    :
         [
-            {'fillStyle' : '#337CA0', 'text' : 'Jesse'},
-            {'fillStyle' : '#3EC300', 'text' : 'Wendy'},
-            {'fillStyle' : '#FFFC31', 'text' : 'Brianda'},
-            {'fillStyle' : '#FF1D15', 'text' : 'Katie'},
-            {'fillStyle' : '#7A693A', 'text' : 'Craig'},
-            {'fillStyle' : '#337CA0', 'text' : 'Boe'},
-            {'fillStyle' : '#3EC300', 'text' : 'Wigg'},
-            {'fillStyle' : '#FFFC31', 'text' : 'Barrios Lopez'},
-            {'fillStyle' : '#FF1D15', 'text' : 'Forbush'},
-            {'fillStyle' : '#7A693A', 'text' : 'Simmons'}
+            {'fillStyle' : '#000000', 'textFontSize' : 14, 'textFillStyle' : '#ffffff', 'text' : '  BANKRUPT'},
+            {'fillStyle' : '#339933', 'text' : '500'},
+            {'fillStyle' : '#ff9900', 'text' : '800'}, 
+            {'fillStyle' : '#3399ff', 'text' : '600'},
+            {'fillStyle' : '#ff66ff', 'text' : '300'},
+            {'fillStyle' : '#6600cc', 'textFillStyle' : '#ffffff', 'text' : '400'},
+            {'fillStyle' : '#ffffff', 'textFontSize' : 14, 'text' : ' LOSE TURN'},
+            {'fillStyle' : '#ff3300', 'text' : '900'},
+            {'fillStyle' : '#cc9900', 'text' : '700'}, 
+            {'fillStyle' : '#339933', 'text' : '600'},
+            {'fillStyle' : '#ffff00', 'text' : '800'},
+            {'fillStyle' : '#6600cc', 'textFillStyle' : '#ffffff', 'text' : '500'},
+            {'fillStyle' : '#000000', 'textFontSize' : 14, 'textFillStyle' : '#ffffff', 'text' : '  BANKRUPT'},
+            {'fillStyle' : '#3399ff', 'text' : '1000'}, 
+            {'fillStyle' : '#ff9900', 'text' : '400'},
+            {'fillStyle' : '#ff3300', 'text' : '700'},
+            {'fillStyle' : '#ffff00', 'text' : '900'},
+            {'fillStyle' : '#ff66ff', 'text' : '2500'}
         ],
         'pointerGuide' :  
         {
@@ -72,9 +89,9 @@
         },
         'pins' : 
         {
-            'number'      : 36,
+            'number'      : 24,
             'outerRadius' : 3,
-            'margin'      : 10,
+            'margin'      : 5,
             'fillStyle'   : 'black',
             'strokeStyle' : 'white'
         }
@@ -92,7 +109,15 @@
         theWheel.segments[7].fillStyle = theWheel.segments[8].fillStyle;
         theWheel.segments[8].fillStyle = theWheel.segments[9].fillStyle;
         theWheel.segments[9].fillStyle = theWheel.segments[10].fillStyle;
-        theWheel.segments[10].fillStyle = temp;
+        theWheel.segments[10].fillStyle = theWheel.segments[11].fillStyle;
+        theWheel.segments[11].fillStyle = theWheel.segments[12].fillStyle;
+        theWheel.segments[12].fillStyle = theWheel.segments[13].fillStyle;
+        theWheel.segments[13].fillStyle = theWheel.segments[14].fillStyle;
+        theWheel.segments[14].fillStyle = theWheel.segments[15].fillStyle;
+        theWheel.segments[15].fillStyle = theWheel.segments[16].fillStyle;
+        theWheel.segments[16].fillStyle = theWheel.segments[17].fillStyle;
+        theWheel.segments[17].fillStyle = theWheel.segments[18].fillStyle;
+        theWheel.segments[18].fillStyle = temp;
         theWheel.draw();
     };
 
