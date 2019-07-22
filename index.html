@@ -12,9 +12,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                        <button onClick="theWheel.startAnimation();">Spin the Wheel</button>
-                        <button onClick="theWheel.rotationAngle=0; theWheel.draw();">Reset</button>
-                </div>
+                        <button class="btn btn-primary" onClick="theWheel.startAnimation();">Spin the Wheel</button>
+                        <button class="btn btn-warning" onClick="theWheel.rotationAngle=(theWheel.rotationAngle % 360); theWheel.draw();">Reset</button>
+                </div>theWheel.rotationAngle = 
             <!-- </div>
             <div class="row"> -->
                     <div class="col-lg-6">
@@ -24,14 +24,15 @@
                     </div>
             </div>
             <div class="row">
-                    <div class="col-lg-6">
+                    <div id="canvasContainer" class="col-lg-6">
                             <br><br>
                             <canvas id="canvas" width="500" height="500">
                                     Canvas not supported, use another browser.
                             </canvas>
+                            <img id="prizePointer" src="./images/basic_pointer.png" alt="V" />
                         </div>
                     <div class="col-lg-6">
-    
+                            
                         API s here
                     </div>
             </div>
