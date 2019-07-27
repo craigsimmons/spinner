@@ -23,7 +23,7 @@
                         </div>
                     <div class="col-md">
                         <div class="row">
-                            <button class="btn btn-primary btn-block" onClick="spinWheel();">Spin the Wheel</button>
+                            <button class="btn btn-primary btn-block spinBtn" onClick="spinWheel();">Spin the Wheel</button>
                         </div>
                         <div class="row spacer">
                            <p class="player">Player 1:   <span id="playerOne"> Player 1's Score</span></p>
@@ -109,6 +109,7 @@
         'canvasId'    : 'canvas',
         'lineWidth'   : 3,
         'numSegments' : 18,
+        'strokeStyle' : '#fcfbfe', 
         'direction'    : 'clockwise',
         'repeat'       : 0,
         'textAlignment'  : 'center',
@@ -171,13 +172,13 @@
     }
 
     function spinResult() {
-        let winningSegment = theWheel.getIndicatedSegment();
-        if (winningSegment.text === '  BANKRUPT') {
+        let prizeSegment = theWheel.getIndicatedSegment();
+        if (prizeSegment.text === '  BANKRUPT') {
             alert("OMG. You've gone Bankrupt!");
-        } else if (indicatedSegment.text == 'BANKRUPT') {
+        } else if (prizeSegment.text == 'BANKRUPT') {
             alert("You've lost your turn ");
         } else {
-            alert("You have won " + indicatedSegment.text);       
+            alert("You have won " + prizeSegment.text);       
         }
     }
 </script>
