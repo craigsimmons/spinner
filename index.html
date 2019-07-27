@@ -7,38 +7,104 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
         <script src="Winwheel.js"></script>
         <link href="style.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet" />
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                        <button class="btn btn-primary" onClick="theWheel.startAnimation();">Spin the Wheel</button>
-                        <button class="btn btn-warning" onClick="theWheel.rotationAngle=(theWheel.rotationAngle % 360); theWheel.draw();">Reset</button>
-                </div>
-            <!-- </div>
-            <div class="row"> -->
-                    <div class="col-lg-6">
-                            <button onClick="changeColors();">Change Colors</button>
-                            <button onClick="addSegment();">Add Segment</button>
-                            <button onClick="deleteSegment();">Delete Segment</button>
-                    </div>
+                <div class="col-md-12"><br><br></div>
             </div>
             <div class="row">
-                    <div id="canvasContainer" class="col-lg-6">
-                            <br><br>
+                    <div id="canvasContainer" class="col-md">
                             <canvas id="canvas" width="500" height="500">
                                     Canvas not supported, use another browser.
                             </canvas>
                             <img id="prizePointer" src="./images/basic_pointer.png" alt="V" />
                         </div>
-                    <div class="col-lg-6">
-                            
-                        API s here
+                    <div class="col-md">
+                        <div class="row">
+                            <button class="btn btn-primary btn-block" onClick="spinWheel();">Spin the Wheel</button>
+                        </div>
+                        <div class="row spacer">
+                           <p class="player">Player 1:   <span id="playerOne"> Player 1's Score</span></p>
+                           <br>
+                        </div>
+                        <div class="row">
+                            <p class="player">Player 2:   <span id="playerTwo"> Player 2's Score</span></p>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <p class="player">Player 3:   <span id="playerThree">  Player 3's Score</span></p>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <br>
+                            <p class="player">Player 4: <span id="playerFour">  Player 4's Score</span></p>
+                        </div>
                     </div>
             </div>
         </div>
         
 <script>
+    // let theWheel = new Winwheel({
+    //     'canvasId'    : 'canvas',
+    //     'lineWidth'   : 3,
+    //     'numSegments' : 18,
+    //     'direction'    : 'clockwise',
+    //     'repeat'       : 0,
+    //     'textAlignment'  : 'center',
+    //     'textOrientation' : 'vertical',    // Set orientation. horizontal, vertical, curved.
+    //     'textFontFamily'  : 'verdana',     // Monospace font best for vertical and curved.
+    //     'textFontSize'    : 24,
+    //     'outerRadius'  : 220, 
+    //     'centerX'     : 250,    
+    //     'centerY'     : 255,
+    //     'rotationAngle'   : 0, 
+    //     'innerRadius'   : 75,  
+    //     'animation' :
+    //     {
+    //         'type'     : 'spinToStop',
+    //         'duration' : 3,
+    //         'spins'    : 9,
+    //         'callbackFinished' : 'spinResult()'
+    //     },
+    //     'segments'    :
+    //     [
+    //         {'fillStyle' : '#000000', 'textFontSize' : 14, 'textFillStyle' : '#ffffff', 'text' : '  BANKRUPT'},
+    //         {'fillStyle' : '#339933', 'text' : '500'},
+    //         {'fillStyle' : '#ff9900', 'text' : '800'}, 
+    //         {'fillStyle' : '#3399ff', 'text' : '600'},
+    //         {'fillStyle' : '#ff66ff', 'text' : '300'},
+    //         {'fillStyle' : '#6600cc', 'textFillStyle' : '#ffffff', 'text' : '400'},
+    //         {'fillStyle' : '#ffffff', 'textFontSize' : 14, 'text' : ' LOSE TURN'},
+    //         {'fillStyle' : '#ff3300', 'text' : '900'},
+    //         {'fillStyle' : '#cc9900', 'text' : '700'}, 
+    //         {'fillStyle' : '#339933', 'text' : '600'},
+    //         {'fillStyle' : '#ffff00', 'text' : '800'},
+    //         {'fillStyle' : '#6600cc', 'textFillStyle' : '#ffffff', 'text' : '500'},
+    //         {'fillStyle' : '#000000', 'textFontSize' : 14, 'textFillStyle' : '#ffffff', 'text' : '  BANKRUPT'},
+    //         {'fillStyle' : '#3399ff', 'text' : '1000'}, 
+    //         {'fillStyle' : '#ff9900', 'text' : '400'},
+    //         {'fillStyle' : '#ff3300', 'text' : '700'},
+    //         {'fillStyle' : '#ffff00', 'text' : '900'},
+    //         {'fillStyle' : '#ff66ff', 'text' : '2500'}
+    //     ],
+    //     'pointerGuide' :  
+    //     {
+    //         'display'     : false,
+    //         'strokeStyle' : '#ff3300',
+    //         'lineWidth'   : 3
+    //     },
+    //     'pins' : 
+    //     {
+    //         'number'      : 36,
+    //         'outerRadius' : 3,
+    //         'margin'      : 5,
+    //         'fillStyle'   : 'black',
+    //         'strokeStyle' : 'white'
+    //     }
+    // });
+
     let theWheel = new Winwheel({
         'canvasId'    : 'canvas',
         'lineWidth'   : 3,
@@ -59,28 +125,28 @@
             'type'     : 'spinToStop',
             'duration' : 3,
             'spins'    : 9,
-            'callbackFinished' : 'alertPrize()'
+            'callbackFinished' : 'spinResult()'
         },
         'segments'    :
-        [
+        [   
             {'fillStyle' : '#000000', 'textFontSize' : 14, 'textFillStyle' : '#ffffff', 'text' : '  BANKRUPT'},
-            {'fillStyle' : '#339933', 'text' : '500'},
-            {'fillStyle' : '#ff9900', 'text' : '800'}, 
-            {'fillStyle' : '#3399ff', 'text' : '600'},
-            {'fillStyle' : '#ff66ff', 'text' : '300'},
-            {'fillStyle' : '#6600cc', 'textFillStyle' : '#ffffff', 'text' : '400'},
+            {'fillStyle' : '#7649fe', 'text' : '500'},
+            {'fillStyle' : '#0c164f', 'textFillStyle' : '#ffffff', 'text' : '800'}, 
+            {'fillStyle' : '#5643fd', 'text' : '600'},
+            {'fillStyle' : '#ba1e68', 'text' : '300'},
+            {'fillStyle' : '#1d1135', 'textFillStyle' : '#ffffff', 'text' : '400'},
             {'fillStyle' : '#ffffff', 'textFontSize' : 14, 'text' : ' LOSE TURN'},
-            {'fillStyle' : '#ff3300', 'text' : '900'},
-            {'fillStyle' : '#cc9900', 'text' : '700'}, 
-            {'fillStyle' : '#339933', 'text' : '600'},
-            {'fillStyle' : '#ffff00', 'text' : '800'},
-            {'fillStyle' : '#6600cc', 'textFillStyle' : '#ffffff', 'text' : '500'},
+            {'fillStyle' : '#7649fe', 'text' : '900'},
+            {'fillStyle' : '#0c164f', 'textFillStyle' : '#ffffff', 'text' : '700'}, 
+            {'fillStyle' : '#5643fd', 'text' : '600'},
+            {'fillStyle' : '#ba1e68', 'text' : '800'},
+            {'fillStyle' : '#1d1135', 'textFillStyle' : '#ffffff', 'text' : '500'},
             {'fillStyle' : '#000000', 'textFontSize' : 14, 'textFillStyle' : '#ffffff', 'text' : '  BANKRUPT'},
-            {'fillStyle' : '#3399ff', 'text' : '1000'}, 
-            {'fillStyle' : '#ff9900', 'text' : '400'},
-            {'fillStyle' : '#ff3300', 'text' : '700'},
-            {'fillStyle' : '#ffff00', 'text' : '900'},
-            {'fillStyle' : '#ff66ff', 'text' : '2500'}
+            {'fillStyle' : '#7649fe', 'text' : '1000'}, 
+            {'fillStyle' : '#0c164f', 'textFillStyle' : '#ffffff', 'text' : '400'},
+            {'fillStyle' : '#5643fd', 'text' : '700'},
+            {'fillStyle' : '#ba1e68', 'text' : '900'},
+            {'fillStyle' : '#1d1135', 'textFillStyle' : '#ffffff', 'text' : '2500'}
         ],
         'pointerGuide' :  
         {
@@ -98,53 +164,21 @@
         }
     });
 
-    function changeColors() {
-        // (note first array position is 1 not 0). Quirk of winwheel.js
-        let temp = theWheel.segments[1].fillStyle;
-        theWheel.segments[1].fillStyle = theWheel.segments[2].fillStyle;
-        theWheel.segments[2].fillStyle = theWheel.segments[3].fillStyle;
-        theWheel.segments[3].fillStyle = theWheel.segments[4].fillStyle;
-        theWheel.segments[4].fillStyle = theWheel.segments[5].fillStyle;
-        theWheel.segments[5].fillStyle = theWheel.segments[6].fillStyle;
-        theWheel.segments[6].fillStyle = theWheel.segments[7].fillStyle;
-        theWheel.segments[7].fillStyle = theWheel.segments[8].fillStyle;
-        theWheel.segments[8].fillStyle = theWheel.segments[9].fillStyle;
-        theWheel.segments[9].fillStyle = theWheel.segments[10].fillStyle;
-        theWheel.segments[10].fillStyle = theWheel.segments[11].fillStyle;
-        theWheel.segments[11].fillStyle = theWheel.segments[12].fillStyle;
-        theWheel.segments[12].fillStyle = theWheel.segments[13].fillStyle;
-        theWheel.segments[13].fillStyle = theWheel.segments[14].fillStyle;
-        theWheel.segments[14].fillStyle = theWheel.segments[15].fillStyle;
-        theWheel.segments[15].fillStyle = theWheel.segments[16].fillStyle;
-        theWheel.segments[16].fillStyle = theWheel.segments[17].fillStyle;
-        theWheel.segments[17].fillStyle = theWheel.segments[18].fillStyle;
-        theWheel.segments[18].fillStyle = temp;
-        theWheel.draw();
-    };
 
-    function addSegment(){
-        // Use a date object to set the text of each added segment 
-        // to the current minutes:seconds just to give each new segment a different label).
-        let date = new Date();
-        // The Second parameter in the call to addSegment specifies the position,
-        // in this case 1 meaning the new segment goes at the start of the wheel.
-        theWheel.addSegment({
-            'text' : date.getMinutes() + ':' + date.getSeconds(),
-            'fillStyle' : '#0000FF'
-        }, 1);
-        theWheel.draw();
-    };
- 
-    function deleteSegment() {
-        // Call function to remove a segment from the wheel, by default the last one will be
-        // removed; you can pass in the number of the segment to delete if desired.
-        theWheel.deleteSegment();
-        theWheel.draw();
-    };
+    function spinWheel() {
+        theWheel.rotationAngle = (theWheel.rotationAngle % 360); 
+        theWheel.startAnimation();
+    }
 
-    function alertPrize() {
+    function spinResult() {
         let winningSegment = theWheel.getIndicatedSegment();
-        alert("The segment is: " + winningSegment.text);
+        if (winningSegment.text === '  BANKRUPT') {
+            alert("OMG. You've gone Bankrupt!");
+        } else if (indicatedSegment.text == 'BANKRUPT') {
+            alert("You've lost your turn ");
+        } else {
+            alert("You have won " + indicatedSegment.text);       
+        }
     }
 </script>
 </body>
